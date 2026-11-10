@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import mcqData from "../data/mcqs.json";
 import "./MCQ.css";
 
@@ -21,7 +21,6 @@ const OPTIONS = ["A", "B", "C", "D"];
 
 export default function MCQ() {
     const [, setSearchParams] = useSearchParams();
-    const { id: subjectId } = useParams<{ id: string }>();
 
     const availableChapters = useMemo(
         () =>
