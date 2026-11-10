@@ -1,0 +1,58 @@
+/* ===========================
+   App
+=========================== */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+
+  background: var(--bg);
+  color: var(--text);
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ===========================
+   Main Content
+=========================== */
+
+.app-main {
+  width: 100%;
+  flex: 1;
+}
+
+
+/* ===========================
+   Legacy Counter
+   Kept only if another
+   component still uses it.
+=========================== */
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 24px;
+  padding: 5px 10px;
+
+  border: 2px solid transparent;
+  border-radius: 5px;
+
+  color: var(--maroon);
+  background: rgba(233, 200, 117, 0.15);
+
+  font-size: 16px;
+
+  transition: border-color 0.3s ease;
+}
+
+.counter:hover {
+  border-color: rgba(137, 31, 45, 0.35);
+}
+
+.counter:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}

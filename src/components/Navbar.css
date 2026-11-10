@@ -1,0 +1,419 @@
+/* ===========================
+   Navbar
+=========================== */
+
+.navbar-custom {
+    --navbar-side-width: 260px;
+
+    display: grid;
+
+    grid-template-columns:
+        var(--navbar-side-width)
+        minmax(0, 1fr)
+        var(--navbar-side-width);
+
+    align-items: center;
+
+    width: 100%;
+    height: 72px;
+
+    padding: 0 2rem;
+
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* ===========================
+   Left / Brand
+=========================== */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+.navbar-brand img {
+    display: block;
+    flex-shrink: 0;
+}
+
+.navbar-left h3 {
+    font-size: 2rem;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.navbar-left p {
+    font-size: .9rem;
+}
+
+
+/* ===========================
+   Center Navigation
+=========================== */
+
+.navbar-center {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 2rem;
+
+    min-width: 0;
+}
+
+.navbar-center .nav-link-custom {
+    flex-shrink: 0;
+}
+
+
+/* ===========================
+   Right
+=========================== */
+
+.navbar-right {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+
+    gap: 1rem;
+}
+
+
+/* ===========================
+   Icon Buttons
+=========================== */
+
+.icon-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    color: var(--text);
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+            opacity .2s ease,
+            transform .2s ease;
+}
+
+.icon-button:hover {
+    opacity: .7;
+}
+
+.icon-button:active {
+    transform: scale(.94);
+}
+
+.icon-button:focus-visible {
+    outline: 2px solid var(--maroon);
+    outline-offset: 3px;
+}
+
+
+/* ===========================
+   Desktop / Mobile Visibility
+=========================== */
+
+.desktop-only {
+    display: flex;
+}
+
+.mobile-only {
+    display: none;
+}
+
+
+/* ===========================
+   Navigation Links
+=========================== */
+
+.nav-link-custom {
+    position: relative;
+
+    display: inline-block;
+
+    padding-bottom: 4px;
+
+    color: var(--text);
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    font-size: .95rem;
+    font-weight: 500;
+
+    transition: color .2s ease;
+}
+
+.nav-link-custom:hover {
+    color: var(--maroon);
+}
+
+.nav-link-custom.active-maroon {
+    color: var(--maroon) !important;
+}
+
+
+/* Active underline */
+
+.nav-link-custom::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--maroon);
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition: transform .25s ease;
+}
+
+.nav-link-custom.active-maroon::after {
+    transform: scaleX(1);
+}
+
+
+/* ===========================
+   Mobile Menu
+=========================== */
+
+.mobile-menu {
+    position: fixed;
+
+    top: 72px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    max-height: calc(100vh - 72px);
+
+    overflow-y: auto;
+
+    background: var(--bg);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+            0 10px 25px rgba(65, 45, 25, .08);
+
+    transform: translateY(-100%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+            transform .3s ease,
+            opacity .3s ease,
+            visibility .3s ease;
+
+    z-index: 999;
+}
+
+.mobile-menu.open {
+    transform: translateY(0);
+
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Mobile navigation links */
+
+.mobile-menu .nav-link-custom {
+    width: 100%;
+
+    padding: 1rem 2rem;
+}
+
+.mobile-menu .nav-link-custom::after {
+    display: none;
+}
+
+
+/* Divider */
+
+.mobile-menu hr {
+    width: 100%;
+
+    margin: 0;
+
+    border: 0;
+    border-top: 1px solid var(--border);
+
+    opacity: 1;
+}
+
+
+/* Mobile action buttons */
+
+.mobile-menu-button {
+    width: 100%;
+
+    padding: 1rem 2rem;
+
+    color: var(--text);
+
+    background: transparent;
+    border: none;
+
+    text-align: left;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: background-color .2s ease;
+}
+
+.mobile-menu-button:hover {
+    background: rgba(137, 31, 45, .05);
+}
+
+.mobile-menu-button:focus-visible {
+    outline: 2px solid var(--maroon);
+    outline-offset: -2px;
+}
+
+
+/* ===========================
+   Large Desktop
+=========================== */
+
+@media (max-width: 1400px) {
+
+    .navbar-custom {
+        padding: 0 1.75rem;
+    }
+
+    .navbar-center {
+        gap: 1.75rem;
+    }
+}
+
+
+/* ===========================
+   Desktop
+=========================== */
+
+@media (max-width: 1250px) {
+
+    .navbar-custom {
+        padding: 0 1.5rem;
+    }
+
+    .navbar-center {
+        gap: 1.35rem;
+    }
+
+    .nav-link-custom {
+        font-size: .9rem;
+    }
+}
+
+
+/* ===========================
+   Transition Zone
+=========================== */
+
+@media (max-width: 1150px) {
+
+    .navbar-custom {
+        padding: 0 1.25rem;
+    }
+
+    .navbar-center {
+        gap: 1rem;
+    }
+}
+
+
+/* ===========================
+   Mobile / Hamburger
+=========================== */
+
+@media (max-width: 1100px) {
+
+    .navbar-custom {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 1.25rem;
+    }
+
+    .navbar-left {
+        width: auto;
+    }
+
+    .navbar-right {
+        width: auto;
+    }
+
+    .navbar-center {
+        display: none;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: inline-flex;
+    }
+}
+
+
+/* ===========================
+   Desktop Only
+=========================== */
+
+@media (min-width: 1101px) {
+
+    .mobile-menu {
+        display: none;
+    }
+}

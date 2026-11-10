@@ -1,0 +1,433 @@
+/* ===========================
+   Topics Hero
+=========================== */
+
+.topics-hero {
+    width: 100%;
+    padding: 40px 0 0;
+
+    background: var(--bg);
+    overflow: hidden;
+}
+
+
+/* ===========================
+   Hero Inner
+=========================== */
+
+.topics-hero-inner {
+    position: relative;
+
+    width: calc(100% - 6rem);
+    max-width: 1600px;
+    min-height: 480px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ===========================
+   Hero Content
+=========================== */
+
+.topics-hero-content {
+    position: relative;
+    z-index: 3;
+
+    width: 43%;
+    max-width: 620px;
+    min-width: 0;
+}
+
+
+/* ===========================
+   Hero Title
+=========================== */
+
+.topics-hero-title {
+    margin: 0;
+
+    color: var(--text-heading);
+    font-family: var(--heading);
+
+    font-size: clamp(3.8rem, 5vw, 5.6rem);
+    font-weight: 400;
+
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+
+/* ===========================
+   Gold Underline
+=========================== */
+
+.topics-hero-underline {
+    width: 42px;
+    height: 3px;
+
+    margin-top: 1rem;
+
+    background: var(--gold);
+}
+
+
+/* ===========================
+   Description
+=========================== */
+
+.topics-hero-description {
+    max-width: 500px;
+
+    margin: 2rem 0 0;
+
+    color: var(--text);
+
+    font-size: 1.15rem;
+    font-weight: 400;
+
+    line-height: 1.65;
+}
+
+.topics-hero-description span {
+    color: var(--maroon);
+    font-weight: 600;
+}
+
+
+/* ===========================
+   Botanical Illustration
+=========================== */
+
+.topics-hero-illustration {
+    position: absolute;
+
+    top: 0;
+    left: 38%;
+
+    z-index: 1;
+
+    width: 52%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.topics-hero-illustration img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+
+/* ===========================
+   Botanical Annotation
+=========================== */
+
+.topics-hero-annotation {
+    position: absolute;
+
+    top: 75%;
+    left: 78%;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+.topics-hero-annotation-line {
+    display: block;
+
+    width: 20px;
+    height: 1px;
+
+    flex-shrink: 0;
+
+    background: #b8b0a2;
+
+    transform: rotate(-12deg);
+}
+
+.topics-hero-annotation-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0.1rem;
+}
+
+.topics-hero-annotation-name {
+    color: #938b7e;
+
+    font-family: "Caveat", cursive;
+
+    font-size: 1.2rem;
+    font-weight: 400;
+
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.topics-hero-annotation-scientific {
+    color: #a19a8d;
+
+    font-family: var(--heading);
+
+    font-size: 0.68rem;
+    font-style: italic;
+
+    line-height: 1.35;
+    white-space: nowrap;
+}
+
+
+/* ===========================
+   Large Desktop
+=========================== */
+
+@media (min-width: 1600px) {
+    .topics-hero-inner {
+        width: calc(100% - 8rem);
+    }
+
+    .topics-hero-annotation {
+        left: 78%;
+    }
+}
+
+
+/* ===========================
+   Desktop
+=========================== */
+
+@media (max-width: 1200px) {
+    .topics-hero-inner {
+        width: calc(100% - 4rem);
+        min-height: 460px;
+    }
+
+    .topics-hero-content {
+        width: 45%;
+    }
+
+    .topics-hero-title {
+        font-size: clamp(3.3rem, 5vw, 4.8rem);
+    }
+
+    .topics-hero-description {
+        font-size: 1.05rem;
+    }
+
+    .topics-hero-illustration {
+        left: 39%;
+        width: 54%;
+    }
+
+    .topics-hero-annotation {
+        left: 77%;
+    }
+
+    .topics-hero-annotation-name {
+        font-size: 1.1rem;
+    }
+
+    .topics-hero-annotation-scientific {
+        font-size: 0.64rem;
+    }
+}
+
+
+/* ===========================
+   Smaller Desktop
+=========================== */
+
+@media (max-width: 1050px) {
+    .topics-hero-inner {
+        width: calc(100% - 3rem);
+        min-height: 450px;
+    }
+
+    .topics-hero-content {
+        width: 47%;
+    }
+
+    .topics-hero-title {
+        font-size: clamp(3rem, 5vw, 4.25rem);
+    }
+
+    .topics-hero-description {
+        max-width: 430px;
+        font-size: 1rem;
+    }
+
+    .topics-hero-illustration {
+        left: 42%;
+        width: 51%;
+    }
+
+    .topics-hero-annotation {
+        left: 76%;
+    }
+
+    .topics-hero-annotation-name {
+        font-size: 1rem;
+    }
+
+    .topics-hero-annotation-scientific {
+        font-size: 0.6rem;
+    }
+}
+
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 900px) {
+    .topics-hero {
+        padding-top: 3rem;
+    }
+
+    .topics-hero-inner {
+        width: calc(100% - 3rem);
+        min-height: 0;
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topics-hero-content {
+        width: 100%;
+        max-width: 700px;
+
+        text-align: center;
+    }
+
+    .topics-hero-title {
+        font-size: clamp(3rem, 9vw, 4.5rem);
+    }
+
+    .topics-hero-underline {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .topics-hero-description {
+        max-width: 600px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .topics-hero-description br {
+        display: none;
+    }
+
+    .topics-hero-illustration {
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: min(650px, 100%);
+        height: 400px;
+
+        margin-top: 2rem;
+
+        flex-shrink: 0;
+    }
+
+    .topics-hero-annotation {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: fit-content;
+
+        margin-top: -0.25rem;
+        margin-bottom: 0.5rem;
+
+        transform: none;
+    }
+
+    .topics-hero-annotation-line {
+        display: none;
+    }
+
+    .topics-hero-annotation-text {
+        align-items: center;
+    }
+
+    .topics-hero-annotation-name {
+        font-size: 1.5rem;
+    }
+
+    .topics-hero-annotation-scientific {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 600px) {
+    .topics-hero {
+        padding-top: 2.5rem;
+    }
+
+    .topics-hero-inner {
+        width: calc(100% - 2.5rem);
+    }
+
+    .topics-hero-title {
+        font-size: clamp(2.8rem, 13vw, 4rem);
+    }
+
+    .topics-hero-description {
+        margin-top: 1.5rem;
+
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+
+    .topics-hero-illustration {
+        width: 115%;
+        height: 300px;
+
+        margin-top: 1rem;
+    }
+
+    .topics-hero-annotation {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .topics-hero-annotation-name {
+        font-size: 1.4rem;
+    }
+
+    .topics-hero-annotation-scientific {
+        font-size: 0.72rem;
+    }
+}

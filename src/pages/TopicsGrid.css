@@ -1,0 +1,600 @@
+/* ===========================
+   Topics Grid Section
+=========================== */
+
+.topics-grid-section {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    padding: 0 3.5rem 4rem;
+
+    background: var(--bg);
+}
+
+
+/* ===========================
+   Topics Grid
+=========================== */
+
+.topics-grid {
+    display: grid;
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.85rem;
+
+    align-items: stretch;
+}
+
+
+/* ===========================
+   Topic Card
+=========================== */
+
+.topic-card {
+    position: relative;
+    z-index: 1;
+
+    min-width: 0;
+    min-height: 174px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.85rem 0.85rem 0.75rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    box-shadow: 0 2px 7px rgba(75, 57, 34, 0.025);
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.2s ease;
+}
+
+/* Keep hovered cards above nearby cards. */
+
+.topic-card:hover {
+    z-index: 5;
+
+    transform: translateY(-2px);
+
+    border-color: #d9cbb6;
+
+    box-shadow:
+            0 5px 16px rgba(75, 57, 34, 0.065);
+}
+
+/* The entire open card must rise above the grid. */
+
+.topic-card-open {
+    z-index: 100;
+
+    border-color: #d9cbb6;
+
+    box-shadow:
+            0 5px 16px rgba(75, 57, 34, 0.065);
+}
+
+/* Keep the open card elevated when the pointer leaves it. */
+
+.topic-card-open:hover {
+    z-index: 100;
+}
+
+
+/* ===========================
+   Topic Number
+=========================== */
+
+.topic-card-number {
+    position: relative;
+    z-index: 1;
+
+    color: var(--maroon);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+/* ===========================
+   Placeholder Image
+=========================== */
+
+.topic-card-image {
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0.15rem 0 0.45rem;
+
+    overflow: hidden;
+}
+
+.topic-card-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0.8;
+
+    transition:
+            opacity 0.2s ease,
+            transform 0.25s ease;
+}
+
+.topic-card:hover .topic-card-image img {
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+
+/* ===========================
+   Card Bottom
+=========================== */
+
+.topic-card-bottom {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 0.4rem;
+
+    margin-top: auto;
+}
+
+.topic-card-title {
+    flex: 1;
+    min-width: 0;
+
+    margin: 0;
+    padding-bottom: 0.05rem;
+
+    color: var(--text-heading);
+
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 500;
+
+    line-height: 1.55;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ===========================
+   Dropdown Toggle
+=========================== */
+
+.topic-card-toggle {
+    width: 29px;
+    height: 29px;
+    flex: 0 0 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    color: var(--maroon);
+    background: transparent;
+
+    border: 1px solid #d9c6c2;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease;
+}
+
+.topic-card-toggle:hover,
+.topic-card-open .topic-card-toggle {
+    color: #fff;
+    background: var(--maroon);
+    border-color: var(--maroon);
+}
+
+.topic-card-toggle svg {
+    font-size: 0.68rem;
+
+    transition: transform 0.2s ease;
+}
+
+.topic-chevron-open {
+    transform: rotate(180deg);
+}
+
+.topic-card-toggle:focus-visible {
+    outline: 2px solid var(--maroon);
+    outline-offset: 3px;
+}
+
+
+/* ===========================
+   Study Options Popup
+=========================== */
+
+.topic-study-menu {
+    position: absolute;
+    z-index: 200;
+
+    top: calc(100% - 0.25rem);
+    left: 0;
+
+    width: max(230px, 100%);
+    max-width: min(300px, calc(100vw - 2rem));
+
+    padding: 0.85rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    box-shadow:
+            0 12px 32px rgba(48, 36, 25, 0.16);
+
+    animation: topic-menu-appear 0.16s ease-out;
+}
+
+/*
+   Default: open downward and align left.
+   The media queries below adjust horizontal alignment
+   according to the number of grid columns.
+*/
+
+.topic-card:nth-child(7n) .topic-study-menu,
+.topic-card:nth-child(7n - 1) .topic-study-menu {
+    left: auto;
+    right: 0;
+}
+
+
+/* ===========================
+   Popup Heading
+=========================== */
+
+.topic-study-menu-heading {
+    margin: 0 0 0.7rem;
+    padding: 0 0.2rem;
+
+    color: var(--text-heading);
+
+    font-family: var(--heading);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+
+/* ===========================
+   Study Option
+=========================== */
+
+.topic-study-option {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.7rem;
+
+    padding: 0.7rem 0.65rem;
+
+    color: var(--text-heading);
+    background: transparent;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.18s ease,
+            border-color 0.18s ease;
+}
+
+.topic-study-option + .topic-study-option {
+    margin-top: 0.45rem;
+}
+
+.topic-study-option:hover {
+    color: var(--text-heading);
+    background: #faf7f0;
+    border-color: #d8cbbb;
+}
+
+.topic-study-option-icon {
+    width: 19px;
+    flex: 0 0 19px;
+
+    font-size: 1rem;
+}
+
+.study-option-notes .topic-study-option-icon {
+    color: var(--maroon);
+}
+
+.study-option-flashcards .topic-study-option-icon {
+    color: #82966b;
+}
+
+.study-option-mcqs .topic-study-option-icon {
+    color: #c49b48;
+}
+
+.topic-study-option-copy {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.15rem;
+}
+
+.topic-study-option-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.topic-study-option-description {
+    color: var(--text);
+
+    font-size: 0.68rem;
+    line-height: 1.35;
+}
+
+.topic-study-option-arrow {
+    color: var(--maroon);
+
+    font-size: 1rem;
+    line-height: 1;
+}
+
+
+/* ===========================
+   Popup Animation
+=========================== */
+
+@keyframes topic-menu-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===========================
+   Large Desktop
+=========================== */
+
+@media (min-width: 1600px) {
+    .topics-grid-section {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+
+    .topics-grid {
+        gap: 1rem;
+    }
+
+    .topic-card {
+        min-height: 184px;
+        padding: 1rem;
+    }
+
+    .topic-card-image {
+        height: 84px;
+    }
+
+    .topic-card-title {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ===========================
+   Desktop
+=========================== */
+
+@media (max-width: 1300px) {
+    .topics-grid-section {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .topics-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.85rem;
+    }
+
+    .topic-card {
+        min-height: 175px;
+    }
+
+    /* Five-column layout: keep right-edge menus inside the viewport. */
+
+    .topic-card:nth-child(7n) .topic-study-menu,
+    .topic-card:nth-child(7n - 1) .topic-study-menu {
+        left: 0;
+        right: auto;
+    }
+
+    .topic-card:nth-child(5n) .topic-study-menu,
+    .topic-card:nth-child(5n - 1) .topic-study-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+
+/* ===========================
+   Small Desktop / Tablet
+=========================== */
+
+@media (max-width: 1000px) {
+    .topics-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .topic-card:nth-child(5n) .topic-study-menu,
+    .topic-card:nth-child(5n - 1) .topic-study-menu {
+        left: 0;
+        right: auto;
+    }
+
+    .topic-card:nth-child(4n) .topic-study-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 760px) {
+    .topics-grid-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .topics-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .topic-card {
+        min-height: 170px;
+        padding: 0.75rem;
+    }
+
+    .topic-card-image {
+        height: 70px;
+    }
+
+    .topic-card-title {
+        font-size: 0.75rem;
+    }
+
+    /* Three-column layout: rightmost card opens toward the left. */
+
+    .topic-card:nth-child(4n) .topic-study-menu {
+        left: 0;
+        right: auto;
+    }
+
+    .topic-card:nth-child(3n) .topic-study-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 520px) {
+    .topics-grid-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .topics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+    }
+
+    .topic-card {
+        min-height: 166px;
+        padding: 0.75rem;
+
+        border-radius: 13px;
+    }
+
+    .topic-card-image {
+        height: 70px;
+        margin-top: 0.25rem;
+    }
+
+    .topic-card-title {
+        font-size: 0.75rem;
+        line-height: 1.45;
+    }
+
+    .topic-card-toggle {
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
+    }
+
+    /* Two-column layout: the right card opens inward. */
+
+    .topic-card:nth-child(3n) .topic-study-menu,
+    .topic-card:nth-child(4n) .topic-study-menu {
+        left: 0;
+        right: auto;
+    }
+
+    .topic-card:nth-child(2n) .topic-study-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+
+/* ===========================
+   Reduced Motion
+=========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .topic-card,
+    .topic-card-image img,
+    .topic-card-toggle,
+    .topic-card-toggle svg,
+    .topic-study-option {
+        transition: none;
+    }
+
+    .topic-study-menu {
+        animation: none;
+    }
+}
+
+.topic-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.topic-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}

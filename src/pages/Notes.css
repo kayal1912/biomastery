@@ -1,0 +1,1244 @@
+/* ===========================
+   Notes Page
+=========================== */
+
+.notes-page {
+    --notes-sidebar-width: 284px;
+    --notes-sidebar-collapsed-width: 76px;
+
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    height: calc(100vh - 72px);
+    min-height: 0;
+
+    background: var(--bg);
+    color: var(--text);
+
+    overflow: hidden;
+}
+
+
+/* ===========================
+   Sidebar
+=========================== */
+
+.notes-sidebar {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+
+    width: var(--notes-sidebar-width);
+    min-width: var(--notes-sidebar-width);
+    flex: 0 0 var(--notes-sidebar-width);
+    min-height: 0;
+
+    background: var(--maroon);
+    color: #fffaf5;
+
+    overflow: hidden;
+
+    transition:
+            width 0.25s ease,
+            min-width 0.25s ease,
+            flex-basis 0.25s ease;
+}
+
+.notes-sidebar-is-collapsed {
+    width: var(--notes-sidebar-collapsed-width);
+    min-width: var(--notes-sidebar-collapsed-width);
+    flex-basis: var(--notes-sidebar-collapsed-width);
+}
+
+
+/* ===========================
+   Sidebar Header
+=========================== */
+
+.notes-sidebar-header {
+    min-height: 64px;
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0.75rem;
+
+    padding: 1rem 1.15rem 0.75rem;
+}
+
+.notes-sidebar-title {
+    margin: 0;
+
+    color: #fffaf5;
+    font-family: var(--heading);
+    font-size: 1.45rem;
+    font-weight: 400;
+
+    white-space: nowrap;
+}
+
+.notes-sidebar-collapse {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    color: #fffaf5;
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 1.1rem;
+    line-height: 1;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+}
+
+.notes-sidebar-collapse:hover {
+    color: #fffaf5;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.notes-sidebar-collapse:focus-visible {
+    outline: 2px solid #fffaf5;
+    outline-offset: 3px;
+}
+
+.notes-sidebar-is-collapsed .notes-sidebar-header {
+    justify-content: center;
+    padding: 0.75rem 0.25rem;
+}
+
+
+/* ===========================
+   Chapter List
+   Scrolls independently
+=========================== */
+
+.notes-chapter-list {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0.2rem;
+
+    padding: 0.25rem 0.75rem 0.75rem;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.notes-chapter-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notes-chapter-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.notes-chapter-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 99px;
+}
+
+
+/* ===========================
+   Main Content
+   Independent scrolling area
+=========================== */
+
+.notes-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 1.5rem 2rem 3rem;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+}
+
+
+/* ===========================
+   Chapter Item
+=========================== */
+
+.notes-chapter-item {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    flex: 0 0 auto;
+
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) 0.75rem;
+    align-items: center;
+    column-gap: 0.5rem;
+
+    padding: 0.65rem 0.7rem;
+
+    color: rgba(255, 250, 245, 0.93);
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+}
+
+.notes-chapter-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.notes-chapter-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.notes-chapter-active:hover {
+    background: rgba(255, 255, 255, 0.19);
+}
+
+.notes-chapter-number {
+    display: block;
+    align-self: center;
+
+    min-width: 0;
+
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
+}
+
+.notes-chapter-name {
+    display: block;
+    align-self: center;
+
+    min-width: 0;
+    margin: 0;
+
+    font-size: 0.83rem;
+    font-weight: 400;
+    line-height: 1.45;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.notes-chapter-arrow {
+    justify-self: center;
+    align-self: center;
+
+    font-size: 0.75rem;
+}
+
+
+/* ===========================
+   Collapsed Chapter Squares
+=========================== */
+
+.notes-sidebar-is-collapsed .notes-chapter-list {
+    align-items: center;
+    gap: 0.45rem;
+
+    padding: 0.5rem 0.35rem 0.75rem;
+}
+
+.notes-sidebar-is-collapsed .notes-chapter-item {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+
+    flex: 0 0 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+}
+
+.notes-sidebar-is-collapsed .notes-chapter-item:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.notes-sidebar-is-collapsed .notes-chapter-active {
+    color: var(--maroon);
+    background: #fffaf5;
+    border-color: #fffaf5;
+}
+
+.notes-sidebar-is-collapsed .notes-chapter-number {
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.notes-sidebar-is-collapsed .notes-chapter-arrow,
+.notes-sidebar-is-collapsed .notes-chapter-name {
+    display: none;
+}
+
+
+/* ===========================
+   Breadcrumb and Legend Row
+=========================== */
+
+.notes-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1.25rem;
+    min-width: 0;
+    margin-bottom: 1.5rem;
+}
+
+.notes-breadcrumb {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+    margin: 0;
+}
+
+.notes-breadcrumb-muted {
+    color: #77716b;
+    font-size: 0.9rem;
+}
+
+.notes-breadcrumb-chevron {
+    color: #a39a8e;
+    font-size: 0.7rem;
+}
+
+.notes-breadcrumb-current {
+    min-width: 0;
+
+    color: var(--text-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ===========================
+   Core / Supplement Legend
+=========================== */
+
+.notes-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 1.15rem;
+    flex: 0 0 auto;
+
+    color: var(--text);
+    font-size: 0.85rem;
+}
+
+.notes-legend-item {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 0.45rem;
+    white-space: nowrap;
+}
+
+.notes-legend-dot {
+    display: inline-block;
+
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+
+    border-radius: 50%;
+}
+
+.notes-legend-core {
+    background-color: #38761d;
+}
+
+.notes-legend-supplement {
+    background-color: #990000;
+}
+
+
+/* ===========================
+   Section List
+=========================== */
+
+.notes-sections {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.7rem;
+
+    min-width: 0;
+}
+
+
+/* ===========================
+   Section Card
+=========================== */
+
+.notes-section-card {
+    min-width: 0;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow: 0 3px 12px rgba(75, 57, 34, 0.035);
+
+    overflow: hidden;
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.notes-section-card:hover {
+    border-color: #ded3c4;
+}
+
+.notes-section-expanded {
+    box-shadow: 0 5px 18px rgba(75, 57, 34, 0.055);
+}
+
+
+/* ===========================
+   Section Header
+=========================== */
+
+.notes-section-header {
+    width: 100%;
+    min-width: 0;
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1.15rem;
+
+    padding: 0.85rem 1.2rem;
+
+    color: var(--maroon);
+    background: transparent;
+
+    border: 0;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.notes-section-header:focus-visible {
+    outline: 2px solid var(--maroon);
+    outline-offset: -4px;
+    border-radius: 18px;
+}
+
+.notes-section-number {
+    flex: 0 0 auto;
+
+    color: var(--maroon);
+    font-family: var(--heading);
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.notes-section-title {
+    flex: 1;
+    min-width: 0;
+
+    color: var(--maroon);
+    font-family: var(--heading);
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+.notes-section-toggle {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+
+    color: #78513d;
+    background: #fffdf9;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    font-size: 0.8rem;
+
+    box-shadow: 0 2px 6px rgba(75, 57, 34, 0.04);
+}
+
+
+/* ===========================
+   Section Body
+=========================== */
+
+.notes-section-body {
+    min-width: 0;
+    padding: 0 1.4rem 1.4rem;
+}
+
+.notes-markdown {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    padding: 1.15rem 1.4rem;
+
+    color: var(--text);
+    background: #fffdf9;
+
+    border: 1px solid #eee6da;
+    border-radius: 12px;
+
+    overflow: visible;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ===========================
+   Markdown Typography
+=========================== */
+
+.notes-markdown > :first-child {
+    margin-top: 0;
+}
+
+.notes-markdown > :last-child {
+    margin-bottom: 0;
+}
+
+.notes-markdown h1,
+.notes-markdown h2,
+.notes-markdown h3,
+.notes-markdown h4 {
+    margin: 1.4rem 0 0.65rem;
+
+    color: var(--maroon);
+    font-family: var(--heading);
+
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.notes-markdown h1 {
+    font-size: 1.65rem;
+}
+
+.notes-markdown h2 {
+    font-size: 1.4rem;
+}
+
+.notes-markdown h3 {
+    font-size: 1.15rem;
+}
+
+.notes-markdown h4 {
+    font-size: 1rem;
+}
+
+.notes-markdown p {
+    margin: 0 0 0.9rem;
+
+    font-size: 0.92rem;
+    line-height: 1.75;
+}
+
+.notes-markdown strong {
+    color: var(--text-heading);
+    font-weight: 650;
+}
+
+.notes-markdown em {
+    font-style: italic;
+}
+
+.notes-markdown ul,
+.notes-markdown ol {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.notes-markdown li {
+    margin: 0.35rem 0;
+
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.notes-markdown li::marker {
+    color: var(--maroon);
+}
+
+.notes-markdown blockquote {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+
+    color: #6f655b;
+    background: #f8f3e9;
+
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+}
+
+.notes-markdown blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.notes-markdown code {
+    padding: 0.12rem 0.35rem;
+
+    color: var(--maroon);
+    background: #f4eee3;
+
+    border-radius: 4px;
+
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.86em;
+}
+
+.notes-markdown pre {
+    max-width: 100%;
+
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background: #f4eee3;
+    border-radius: 8px;
+
+    overflow-x: auto;
+}
+
+.notes-markdown pre code {
+    padding: 0;
+
+    color: var(--text-heading);
+    background: transparent;
+}
+
+.notes-markdown a {
+    color: var(--maroon);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.notes-markdown hr {
+    margin: 1.5rem 0;
+
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+
+/* ===========================
+   Core / Supplement Content
+=========================== */
+
+/*
+   The converter will mark classified text with
+   .core and .supplement classes.
+
+   These styles apply to paragraphs, list items,
+   headings, and inline spans carrying those classes.
+*/
+
+.notes-markdown .core {
+    color: #38761d;
+}
+
+.notes-markdown .supplement {
+    color: #990000;
+}
+
+/* Preserve classification colors on emphasized text. */
+
+.notes-markdown .core strong,
+.notes-markdown .core em,
+.notes-markdown .supplement strong,
+.notes-markdown .supplement em {
+    color: inherit;
+}
+
+
+/* ===========================
+   Markdown Images
+=========================== */
+
+.notes-markdown .notes-image-figure {
+    max-width: 100%;
+    margin: 1.25rem 0;
+
+    text-align: center;
+}
+
+.notes-markdown .notes-image-figure img {
+    display: block;
+
+    width: auto;
+    max-width: 100%;
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 8px;
+}
+
+.notes-markdown .notes-image-caption {
+    margin-top: 0.6rem;
+
+    color: var(--text);
+    opacity: 0.8;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+
+/* ===========================
+   Markdown Tables
+=========================== */
+
+/*
+   The ReactMarkdown renderer wraps each table in
+   .notes-table-wrapper. This wrapper scrolls horizontally
+   when a table is wider than its available space.
+*/
+
+.notes-markdown .notes-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 1rem 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.notes-markdown .notes-table-wrapper table {
+    width: 100%;
+    margin: 0;
+
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    font-size: 0.85rem;
+}
+
+.notes-markdown .notes-table-wrapper th,
+.notes-markdown .notes-table-wrapper td {
+    padding: 0.65rem 0.75rem;
+
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.notes-markdown .notes-table-wrapper th {
+    color: var(--text-heading);
+    background: #f8f3e9;
+
+    font-weight: 600;
+}
+
+.notes-markdown .notes-table-wrapper tbody tr:nth-child(even) td {
+    background: rgba(120, 81, 61, 0.035);
+}
+
+/* Keep Core / Supplement colors inside tables too. */
+
+.notes-markdown .notes-table-wrapper .core {
+    color: #38761d;
+}
+
+.notes-markdown .notes-table-wrapper .supplement {
+    color: #990000;
+}
+
+
+/* ===========================
+   Medium Desktop
+=========================== */
+
+@media (max-width: 1100px) {
+    .notes-page {
+        --notes-sidebar-width: 250px;
+        --notes-sidebar-collapsed-width: 68px;
+    }
+
+    .notes-main {
+        padding: 1.25rem 1.25rem 2.5rem;
+    }
+
+    .notes-chapter-list {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .notes-chapter-item {
+        grid-template-columns: 1.8rem minmax(0, 1fr) 0.65rem;
+        column-gap: 0.4rem;
+
+        padding-right: 0.55rem;
+        padding-left: 0.55rem;
+    }
+
+    .notes-chapter-name {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ===========================
+   Tablet and Mobile
+=========================== */
+
+@media (max-width: 760px) {
+    .notes-page {
+        flex-direction: column;
+        min-height: calc(100vh - 64px);
+        height: auto;
+
+        overflow: visible;
+    }
+
+    .notes-sidebar,
+    .notes-sidebar-is-collapsed {
+        width: 100%;
+        min-width: 0;
+        flex: 0 0 auto;
+    }
+
+    /* ---------------------------
+       Expanded Sidebar Header
+    --------------------------- */
+
+    .notes-sidebar-header {
+        min-height: 56px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0.6rem 1rem;
+    }
+
+    .notes-sidebar-title {
+        font-size: 1.25rem;
+    }
+
+    .notes-sidebar-collapse {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+    }
+
+    /* ---------------------------
+       Expanded Chapter List
+    --------------------------- */
+
+    .notes-chapter-list {
+        max-height: 300px;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 0.25rem 0.75rem 0.75rem;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* ---------------------------
+       Collapsed Sidebar Layout
+    --------------------------- */
+
+    .notes-sidebar-is-collapsed {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+
+        padding: 0.65rem 0.75rem;
+    }
+
+    .notes-sidebar-is-collapsed .notes-sidebar-header {
+        grid-column: 2;
+        grid-row: 1;
+
+        min-height: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-left: 0.75rem;
+        padding: 0 0 0 0.75rem;
+
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .notes-sidebar-is-collapsed .notes-sidebar-collapse {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 40px;
+        height: 44px;
+        flex: 0 0 40px;
+
+        padding: 0;
+
+        color: #fffaf5;
+        background: transparent;
+
+        border: 0;
+        border-radius: 8px;
+
+        font-size: 1.35rem;
+    }
+
+    .notes-sidebar-is-collapsed .notes-sidebar-collapse:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-list {
+        grid-column: 1;
+        grid-row: 1;
+
+        width: 100%;
+        min-width: 0;
+        max-height: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 0.45rem;
+
+        margin: 0;
+        padding: 0;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Keep chapter numbers fixed-size while scrolling. */
+
+    .notes-sidebar-is-collapsed .notes-chapter-item {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+
+        flex: 0 0 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0;
+        padding: 0;
+
+        color: rgba(255, 250, 245, 0.95);
+        background: transparent;
+
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-item:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-active {
+        color: var(--maroon);
+        background: #fffaf5;
+        border-color: #fffaf5;
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-active:hover {
+        color: var(--maroon);
+        background: #fffaf5;
+        border-color: #fffaf5;
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-number {
+        display: block;
+
+        min-width: 0;
+        margin: 0;
+
+        font-size: 0.82rem;
+        font-weight: 600;
+        line-height: 1;
+
+        font-variant-numeric: tabular-nums;
+    }
+
+    .notes-sidebar-is-collapsed .notes-chapter-name,
+    .notes-sidebar-is-collapsed .notes-chapter-arrow {
+        display: none;
+    }
+
+    /* ---------------------------
+       Main Content
+    --------------------------- */
+
+    .notes-main {
+        width: 100%;
+        min-width: 0;
+
+        padding: 1.25rem 1rem 2.5rem;
+
+        overflow: visible;
+    }
+
+    .notes-top-row {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 0.6rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .notes-breadcrumb {
+        gap: 0.6rem;
+        min-height: 0;
+    }
+
+    .notes-breadcrumb-muted,
+    .notes-breadcrumb-current {
+        font-size: 0.85rem;
+    }
+
+    .notes-legend {
+        justify-content: flex-start;
+        gap: 1rem;
+
+        font-size: 0.8rem;
+    }
+
+    .notes-section-header {
+        gap: 0.8rem;
+        padding: 0.8rem 0.9rem;
+    }
+
+    .notes-section-number,
+    .notes-section-title {
+        font-size: 1.05rem;
+    }
+
+    .notes-section-toggle {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+    }
+
+    .notes-section-body {
+        padding: 0 0.75rem 0.9rem;
+    }
+
+    .notes-markdown {
+        padding: 1rem;
+    }
+
+    .notes-markdown .notes-table-wrapper table {
+        min-width: 480px;
+    }
+}
+
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 480px) {
+    .notes-sidebar-header {
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+
+    .notes-chapter-list {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .notes-chapter-item {
+        grid-template-columns: 1.7rem minmax(0, 1fr) 0.6rem;
+        column-gap: 0.35rem;
+
+        padding: 0.6rem;
+    }
+
+    .notes-chapter-number {
+        font-size: 0.85rem;
+    }
+
+    .notes-chapter-name {
+        font-size: 0.78rem;
+    }
+
+    .notes-main {
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+
+    .notes-section-header {
+        gap: 0.6rem;
+        padding: 0.75rem;
+    }
+
+    .notes-section-number,
+    .notes-section-title {
+        font-size: 0.98rem;
+    }
+
+    .notes-section-body {
+        padding-right: 0.6rem;
+        padding-left: 0.6rem;
+    }
+
+    .notes-markdown {
+        padding: 0.85rem;
+    }
+
+    .notes-markdown p,
+    .notes-markdown li {
+        font-size: 0.88rem;
+    }
+
+    .notes-legend {
+        gap: 0.85rem;
+        font-size: 0.78rem;
+    }
+
+    .notes-markdown .notes-table-wrapper table {
+        min-width: 440px;
+    }
+}
+
+
+/* ===========================
+   Reduced Motion
+=========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .notes-sidebar,
+    .notes-chapter-item,
+    .notes-sidebar-collapse,
+    .notes-section-card {
+        transition: none;
+    }
+}
+
+/* Core syllabus content */
+.notes-markdown .notes-core {
+    color: #38761d;
+}
+
+/* Supplement syllabus content */
+.notes-markdown .notes-supplement {
+    color: #990000;
+}
+
+.notes-markdown .notes-core {
+    color: #38761d;
+}
+
+.notes-markdown .notes-supplement {
+    color: #990000;
+}
+
+.notes-markdown .notes-core strong,
+.notes-markdown .notes-core b,
+.notes-markdown .notes-supplement strong,
+.notes-markdown .notes-supplement b {
+    color: inherit;
+}

@@ -1,0 +1,372 @@
+/* ===========================
+   Home Page
+=========================== */
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* ===========================
+   Shared Content Width
+=========================== */
+
+.feature-section,
+.topics-section {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* ===========================
+   Feature Section
+=========================== */
+
+.feature-section {
+    padding: 0 3rem 3.5rem;
+}
+
+
+/* ===========================
+   Feature Strip
+=========================== */
+
+.feature-strip {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow:
+            0 6px 22px rgba(75, 57, 34, 0.06);
+}
+
+
+/* ===========================
+   Feature Item
+=========================== */
+
+.feature-item {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+
+    align-items: center;
+    min-width: 0;
+
+    padding: 1.5rem 1rem;
+}
+
+.feature-item:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+    top: 20%;
+    right: 0;
+
+    width: 1px;
+    height: 60%;
+
+    background: var(--border);
+}
+
+
+/* ===========================
+   Feature Icon
+=========================== */
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--maroon);
+    background: #fffdf9;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    font-size: 1.2rem;
+
+    box-shadow:
+            0 2px 8px rgba(75, 57, 34, 0.03);
+}
+
+
+/* ===========================
+   Feature Content
+=========================== */
+
+.feature-content {
+    min-width: 0;
+    padding-left: 0.75rem;
+}
+
+.feature-content h3 {
+    margin: 0 0 0.45rem;
+
+    color: var(--text-heading);
+    font-family: var(--heading);
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+.feature-content p {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+
+/* ===========================
+   Explore Topics
+=========================== */
+
+.topics-section {
+    padding: 1rem 4rem 5rem;
+}
+
+
+/* ===========================
+   Topics Header
+=========================== */
+
+.topics-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.topics-header h2 {
+    margin: 0;
+
+    color: var(--text-heading);
+    font-family: var(--heading);
+
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.topics-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    color: var(--maroon);
+
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.topics-view-all span {
+    font-size: 1.15rem;
+    transition: transform 0.2s ease;
+}
+
+.topics-view-all:hover {
+    color: #701823;
+}
+
+.topics-view-all:hover span {
+    transform: translateX(3px);
+}
+
+
+/* ===========================
+   Topic Cards
+=========================== */
+
+.topic-cards {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+
+/* ===========================
+   Medium Desktop
+=========================== */
+
+@media (max-width: 1200px) {
+    .feature-section {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .feature-item {
+        grid-template-columns: 48px minmax(0, 1fr);
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+    }
+
+    .feature-content {
+        padding-left: 0.65rem;
+    }
+
+    .feature-content h3 {
+        font-size: 0.95rem;
+    }
+
+    .feature-content p {
+        font-size: 0.7rem;
+    }
+
+    .topics-section {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 1000px) {
+    .feature-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-item:nth-child(2)::after {
+        display: none;
+    }
+
+    .feature-item:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .topic-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ===========================
+   Small Tablet
+=========================== */
+
+@media (max-width: 700px) {
+    .feature-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-item {
+        grid-template-columns: 56px minmax(0, 1fr);
+        padding: 1.5rem;
+    }
+
+    .feature-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .feature-item:not(:last-child) {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .topics-section {
+        padding-top: 0.5rem;
+    }
+
+    .topics-header {
+        padding: 0;
+        margin-bottom: 1.25rem;
+    }
+
+    .topics-header h2 {
+        font-size: 1.75rem;
+    }
+}
+
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 600px) {
+    .feature-section {
+        padding: 0 1.25rem 2.5rem;
+    }
+
+    .feature-strip {
+        border-radius: 15px;
+    }
+
+    .feature-item {
+        padding: 1.4rem 1.25rem;
+    }
+
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.3rem;
+    }
+
+    .feature-content {
+        padding-left: 0.9rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1rem;
+    }
+
+    .feature-content p {
+        font-size: 0.78rem;
+    }
+
+    .feature-content p br {
+        display: none;
+    }
+
+    .topics-section {
+        padding: 0 1.25rem 3rem;
+    }
+
+    .topics-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .topics-view-all {
+        font-size: 0.78rem;
+    }
+
+    .topic-cards {
+        grid-template-columns: 1fr;
+    }
+}
